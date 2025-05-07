@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cristal·lització Sulfat de Sodi (Problema 1)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        window.MathJax = {
+          tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true,
+            tags: 'ams'
+          },
+          svg: {
+            fontCache: 'global'
+          },
+          options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            ignoreHtmlClass: 'tex2jax_ignore',
+            processHtmlClass: 'tex2jax_process'
+          }
+        };
+        </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async id="MathJax-script"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; background-color: #f8fafc; }
+        h1 { color: #111827; font-size: 1.875rem; line-height: 2.25rem; font-weight: 700;}
+        h2 { color: #0c4a6e; font-size: 1.6rem; line-height: 2.1rem; font-weight: 700; border-bottom: 3px solid #7dd3fc; padding-bottom: 0.5rem; margin-top: 2.5rem; margin-bottom: 1.5rem; }
+        h3 { color: #0369a1; font-size: 1.25rem; line-height: 1.75rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem; border-bottom: 1px solid #bae6fd; padding-bottom: 0.25rem; }
+        p, li { color: #374151; line-height: 1.75; margin-bottom: 1rem; }
+        strong { color: #1F2937; font-weight: 600; }
+        .section-bg-light { background-color: #f0f9ff; }
+        .section-bg-white { background-color: #FFFFFF; }
+        .math-block { margin: 1.5rem 0; padding: 1rem; background-color: #f0f9ff; border-left: 4px solid #38bdf8; font-size: 1.1rem; overflow-x: auto;}
+        .footer-attribution { margin-top: 1.5rem; font-size: 0.875rem; line-height: 1.25rem; color: #6b7280; text-align: center; }
+        .calculation-step { margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid #e5e7eb;}
+        .calculation-step:last-child { border-bottom: none; }
+        .explanation { background-color: #f9fafb; padding: 1rem; border-radius: 0.375rem; border: 1px solid #e5e7eb; margin-top: 1rem; font-size: 0.95rem;}
+        .explanation p, .explanation li { margin-bottom: 0.75rem; }
+        .figure-placeholder {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #f3f4f6;
+            border: 1px solid #d1d5db;
+            border-radius: 0.375rem;
+            padding: 1.5rem;
+            margin: 1.5rem auto;
+            text-align: center;
+            color: #4b5563;
+            max-width: 600px;
+        }
+        .figure-title { font-weight: 600; margin-bottom: 0.75rem; color: #1f2937; }
+        .value-highlight { font-weight: 600; color: #047857; /* Verd fosc */ }
+        .unit-conversion { font-size: 0.85rem; color: #6b7280; margin-left: 0.5rem; }
+        .assumption { font-style: italic; color: #4b5563; margin-top: 0.5rem; font-size: 0.9rem; }
+        .reference-note { font-size: 0.85rem; color: #6b7280; margin-top: 0.5rem; }
+        /* Assegura que MathJax tingui espai per renderitzar */
+         mjx-container { display: inline-block !important; margin: 0 0.1em;}
+         .original-enunciat { background-color: #fffbeb; border: 1px solid #fef3c7; padding: 1rem; border-radius: 0.5rem; margin-bottom: 2rem; font-style: italic; color: #713f12; }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800 antialiased">
+
+    <header class="bg-gradient-to-r from-sky-700 to-cyan-700 text-white shadow-md">
+        <div class="container mx-auto px-6 py-5">
+            <h1 class="text-2xl md:text-3xl font-bold">Cristal·lització de Sulfat de Sodi Decahidratat</h1>
+            <p class="text-lg font-semibold mt-1">Resolució Detallada (Problema 1, Cap. 6)</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-8">
+
+        <section id="enunciat-original" class="original-enunciat">
+             <h3 class="!mt-0 !mb-3 !border-none text-amber-800 font-semibold">Enunciat Original (Problema 1)</h3>
+             <p class="!mb-0">Calculeu la massa de cristalls que es pot obtenir en refredar fins a 10ºC una dissolució que conté 100 kg de sulfat de sodi en 500 kg d’aigua. La solubilitat del sulfat de sodi a 10ºC és de 9 kg/100 kg d’aigua. Se sap que, en aquestes condicions, els cristalls que es formen són decahidratats. Es pot assumir que es perd per evaporació el 2% de l’aigua durant el procés.</p>
+        </section>
+
+        <section id="plantejament" class="mb-12 p-6 rounded-lg shadow-lg section-bg-white">
+            <h2 class="text-sky-800 border-b-2 border-sky-300 pb-2 mb-6">Plantejament del Problema</h2>
+            <p>Es vol determinar la massa màxima de cristalls de sulfat de sodi decahidratat (\(\text{Na}_2\text{SO}_4 \cdot 10\text{H}_2\text{O}\)) que es poden obtenir a partir d'una dissolució inicial per refredament, considerant una pèrdua d'aigua per evaporació.</p>
+            <p><strong>Dades Inicials:</strong></p>
+            <ul class="list-disc list-inside pl-4 space-y-2 mb-4">
+                <li>Massa de sulfat de sodi (\(\text{Na}_2\text{SO}_4\)) inicial: 100 kg.</li>
+                <li>Massa d'aigua (\(\text{H}_2\text{O}\)) inicial: 500 kg.</li>
+                <li>Temperatura final: 10\(^\circ\)C.</li>
+                <li>Solubilitat del \(\text{Na}_2\text{SO}_4\) a 10\(^\circ\)C: 9 kg de \(\text{Na}_2\text{SO}_4\) / 100 kg de \(\text{H}_2\text{O}\).</li>
+                <li>Forma dels cristalls: Decahidratats (\(\text{Na}_2\text{SO}_4 \cdot 10\text{H}_2\text{O}\)).</li>
+                <li>Pèrdua d'aigua per evaporació: 2% de l'aigua inicial.</li>
+            </ul>
+            <p><strong>Objectiu:</strong> Calcular la massa de cristalls decahidratats (\(m_C\)) obtinguts.</p>
+            <p class="assumption">Se suposa que la cristal·lització es produeix fins a assolir la saturació a la temperatura final i que els cristalls són purs.</p>
+        </section>
+
+        <section id="resolucio" class="mb-12 p-6 rounded-lg shadow-lg section-bg-white">
+            <h2 class="text-sky-800 border-b-2 border-sky-300 pb-2 mb-6">Metodologia i Càlculs Detallats</h2>
+
+            <div class="calculation-step">
+                <h3>Pas 1: Determinació de les Masses Moleculars</h3>
+                <p>Calculem les masses moleculars del sulfat de sodi anhidre (\(\text{Na}_2\text{SO}_4\)), de l'aigua (\(\text{H}_2\text{O}\)) i del sulfat de sodi decahidratat (\(\text{Na}_2\text{SO}_4 \cdot 10\text{H}_2\text{O}\)).</p>
+                <p>Masses atòmiques aproximades: Na = 23 g/mol, S = 32 g/mol, O = 16 g/mol, H = 1 g/mol.</p>
+                <div class="explanation">
+                    <p><strong>Massa molecular de \(\text{Na}_2\text{SO}_4\) (\(M_A\)):</strong></p>
+                    <p>\( M_A = (2 \times 23) + 32 + (4 \times 16) = 46 + 32 + 64 = \) <span class="value-highlight">142</span> g/mol (o kg/kmol).</p>
+                    <p><strong>Massa molecular de \(\text{H}_2\text{O}\) (\(M_W\)):</strong></p>
+                    <p>\( M_W = (2 \times 1) + 16 = \) <span class="value-highlight">18</span> g/mol (o kg/kmol).</p>
+                    <p><strong>Massa molecular de \(\text{Na}_2\text{SO}_4 \cdot 10\text{H}_2\text{O}\) (\(M_H\)):</strong></p>
+                    <p>\( M_H = M_A + 10 \times M_W = 142 + (10 \times 18) = 142 + 180 = \) <span class="value-highlight">322</span> g/mol (o kg/kmol).</p>
+                </div>
+            </div>
+
+            <div class="calculation-step">
+                <h3>Pas 2: Càlcul de l'Aigua Evaporada i Aigua Restant Abans de la Cristal·lització</h3>
+                <p>Es perd un 2% de l'aigua inicial per evaporació.</p>
+                <div class="explanation">
+                    <p><strong>Massa d'aigua inicial (\(m_{W,inicial}\)):</strong> 500 kg.</p>
+                    <p><strong>Massa d'aigua evaporada (\(m_{W,evap}\)):</strong></p>
+                    <p>\( m_{W,evap} = 0.02 \times m_{W,inicial} = 0.02 \times 500 \, \text{kg} = \) <span class="value-highlight">10</span> kg.</p>
+                    <p><strong>Massa d'aigua que roman en el sistema abans de la cristal·lització (\(m_{W,sistema}\)):</strong></p>
+                    <p>\( m_{W,sistema} = m_{W,inicial} - m_{W,evap} = 500 \, \text{kg} - 10 \, \text{kg} = \) <span class="value-highlight">490</span> kg.</p>
+                </div>
+            </div>
+
+            <div class="calculation-step">
+                <h3>Pas 3: Plantejament del Balanç de Matèria</h3>
+                <p>Sigui \(m_C\) la massa de cristalls de \(\text{Na}_2\text{SO}_4 \cdot 10\text{H}_2\text{O}\) formats.</p>
+                <p>La formació dels cristalls implica la retirada de sulfat de sodi anhidre i d'aigua de la dissolució.</p>
+                <div class="explanation">
+                    <p><strong>Massa de \(\text{Na}_2\text{SO}_4\) en els cristalls (\(m_{A,cristalls}\)):</strong></p>
+                    <p>La fracció màssica de \(\text{Na}_2\text{SO}_4\) en el cristall decahidratat és \( \frac{M_A}{M_H} = \frac{142}{322} \).</p>
+                    <p>\( m_{A,cristalls} = m_C \times \frac{M_A}{M_H} = m_C \times \frac{142}{322} \)</p>
+
+                    <p class="mt-4"><strong>Massa de \(\text{H}_2\text{O}\) en els cristalls (aigua d'hidratació, \(m_{W,hidrat}\)):</strong></p>
+                    <p>La fracció màssica d'\(\text{H}_2\text{O}\) en el cristall decahidratat és \( \frac{10 \cdot M_W}{M_H} = \frac{10 \times 18}{322} = \frac{180}{322} \).</p>
+                    <p>\( m_{W,hidrat} = m_C \times \frac{10 \cdot M_W}{M_H} = m_C \times \frac{180}{322} \)</p>
+
+                    <p class="mt-4"><strong>Després de la cristal·lització, en la dissolució mare (saturada a 10\(^\circ\)C):</strong></p>
+                    <p>Massa de \(\text{Na}_2\text{SO}_4\) en la dissolució mare (\(m_{A,mare}\)):</p>
+                    <p>\( m_{A,mare} = (\text{Massa inicial de } \text{Na}_2\text{SO}_4) - m_{A,cristalls} = 100 \, \text{kg} - m_C \times \frac{142}{322} \)</p>
+                    <p>Massa d'\(\text{H}_2\text{O}\) en la dissolució mare (\(m_{W,mare}\)):</p>
+                    <p>\( m_{W,mare} = m_{W,sistema} - m_{W,hidrat} = 490 \, \text{kg} - m_C \times \frac{180}{322} \)</p>
+                </div>
+            </div>
+
+            <div class="calculation-step">
+                <h3>Pas 4: Aplicació de la Condició de Solubilitat a la Dissolució Mare</h3>
+                <p>A 10\(^\circ\)C, la dissolució mare està saturada. La solubilitat és de 9 kg de \(\text{Na}_2\text{SO}_4\) per 100 kg d'\(\text{H}_2\text{O}\).</p>
+                <div class="math-block">
+                    $$ \frac{m_{A,mare}}{m_{W,mare}} = \frac{9 \, \text{kg } \text{Na}_2\text{SO}_4}{100 \, \text{kg } \text{H}_2\text{O}} $$
+                </div>
+                <div class="explanation">
+                    <p>Substituïm les expressions per \(m_{A,mare}\) i \(m_{W,mare}\):</p>
+                    <div class="math-block">
+                        $$ \frac{100 - m_C \frac{142}{322}}{490 - m_C \frac{180}{322}} = \frac{9}{100} $$
+                    </div>
+                    <p>Ara resolem aquesta equació per a \(m_C\).</p>
+                    <p>\( 100 \left(100 - m_C \frac{142}{322}\right) = 9 \left(490 - m_C \frac{180}{322}\right) \)</p>
+                    <p>\( 10000 - m_C \frac{14200}{322} = 4410 - m_C \frac{1620}{322} \)</p>
+                    <p>Agrupem els termes amb \(m_C\):</p>
+                    <p>\( 10000 - 4410 = m_C \frac{14200}{322} - m_C \frac{1620}{322} \)</p>
+                    <p>\( 5590 = m_C \left(\frac{14200 - 1620}{322}\right) \)</p>
+                    <p>\( 5590 = m_C \left(\frac{12580}{322}\right) \)</p>
+                    <p>Simplifiquem la fracció: \( \frac{12580}{322} \approx 39.0683 \)</p>
+                    <p>\( 5590 = m_C \times 39.0683 \)</p>
+                    <p>\( m_C = \frac{5590}{39.0683} \approx \) <span class="value-highlight">143.08</span> kg</p>
+                </div>
+            </div>
+
+            <div class="calculation-step">
+                <h3>Pas 5: Verificació (Opcional)</h3>
+                <p>Podem verificar si les quantitats en la dissolució mare compleixen la solubilitat.</p>
+                <div class="explanation">
+                    <p>Si \(m_C = 143.08 \, \text{kg}\):</p>
+                    <p>\( m_{A,cristalls} = 143.08 \times \frac{142}{322} \approx 143.08 \times 0.44099 \approx 63.098 \, \text{kg} \)</p>
+                    <p>\( m_{W,hidrat} = 143.08 \times \frac{180}{322} \approx 143.08 \times 0.55901 \approx 79.982 \, \text{kg} \)</p>
+                    <p class="mt-2">\( m_{A,mare} = 100 - 63.098 = 36.902 \, \text{kg} \)</p>
+                    <p>\( m_{W,mare} = 490 - 79.982 = 410.018 \, \text{kg} \)</p>
+                    <p class="mt-2">Relació en la dissolució mare:</p>
+                    <p>\( \frac{m_{A,mare}}{m_{W,mare}} = \frac{36.902}{410.018} \approx 0.09000 \)</p>
+                    <p>Solubilitat donada: \( \frac{9}{100} = 0.09 \). La concordança és excel·lent.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="resum" class="mb-12 p-6 rounded-lg shadow-lg section-bg-light">
+            <h2 class="text-sky-800 border-b-2 border-sky-300 pb-2 mb-6">Conclusió del Càlcul</h2>
+            <p>La massa de cristalls de sulfat de sodi decahidratat (\(\text{Na}_2\text{SO}_4 \cdot 10\text{H}_2\text{O}\)) que es pot obtenir en les condicions especificades és aproximadament:</p>
+             <div class="output-grid">
+                 <div class="output-item col-span-full md:col-span-1">
+                     <span class="output-label">Massa de Cristalls (\(m_C\))</span>
+                     <span class="output-value">143.1</span>
+                     <span class="output-unit">kg</span>
+                 </div>
+             </div>
+             <p class="mt-6 explanation">Aquest càlcul assumeix un rendiment teòric màxim, on la dissolució mare final assoleix exactament la saturació a 10\(^\circ\)C i no hi ha pèrdues de solut ni formació de cristalls impurs. En la pràctica industrial, el rendiment real pot ser inferior a causa de factors cinètics, sobresaturació residual o pèrdues durant la separació dels cristalls.</p>
+        </section>
+
+    </main>
+
+    <footer class="mt-16 pt-8 border-t border-gray-300 text-sm text-gray-600">
+        <p class="footer-attribution">Cristal·lització - Curs Avançat</p>
+    </footer>
+
+    <script>
+        // No cal JavaScript per funcionalitat, només per MathJax.
+        // MathJax s'executarà automàticament en carregar la pàgina.
+    </script>
+
+</body>
+</html>
