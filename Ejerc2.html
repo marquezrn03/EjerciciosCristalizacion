@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anàlisi Cristal·litzador Swenson-Walker: Fosfat de Sodi</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        window.MathJax = {
+          tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true,
+            tags: 'ams'
+          },
+          svg: {
+            fontCache: 'global'
+          },
+          options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            ignoreHtmlClass: 'tex2jax_ignore',
+            processHtmlClass: 'tex2jax_process'
+          }
+        };
+        </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async id="MathJax-script"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3b82f6; /* Blau Geankoplis */
+            --primary-darker-color: #2563eb;
+            --secondary-color: #dbeafe; /* Blau molt clar per accents */
+            --text-dark: #1f2937;
+            --text-medium: #4b5563;
+            --text-light: #6b7280;
+            --bg-main: #f9fafb;
+            --bg-section-light: #eff6ff;
+            --bg-section-white: #ffffff;
+            --border-color: #d1d5db;
+            --table-header-bg: #bfdbfe; 
+            --table-header-text: #1e3a8a;
+        }
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; background-color: var(--bg-main); color: var(--text-dark); }
+        h1, h2, h3, h4 { font-family: 'Inter', sans-serif; }
+        h1 { color: var(--text-dark); font-size: 2.25rem; line-height: 2.5rem; font-weight: 700; letter-spacing: -0.025em;}
+        h2 { color: var(--primary-darker-color); font-size: 1.8rem; line-height: 2.2rem; font-weight: 700; border-bottom: 3px solid var(--primary-color); padding-bottom: 0.6rem; margin-top: 3rem; margin-bottom: 2rem; }
+        h3 { color: var(--primary-darker-color); font-size: 1.45rem; line-height: 1.95rem; font-weight: 600; margin-top: 2.5rem; margin-bottom: 1.4rem; border-bottom: 1px solid var(--secondary-color); padding-bottom: 0.4rem; }
+        h4 { color: var(--primary-darker-color); font-size: 1.2rem; line-height: 1.75rem; font-weight: 600; margin-top: 2rem; margin-bottom: 0.9rem; }
+        p, li { color: var(--text-medium); line-height: 1.8; margin-bottom: 1.1rem; font-size: 1rem; }
+        strong { color: var(--text-dark); font-weight: 600; }
+        .section-bg-light { background-color: var(--bg-section-light); padding: 2.5rem; border-radius: 0.5rem; margin-bottom: 2.5rem; box-shadow: 0 3px 6px rgba(0,0,0,0.05); }
+        .section-bg-white { background-color: var(--bg-section-white); padding: 2.5rem; border-radius: 0.5rem; margin-bottom: 2.5rem; box-shadow: 0 4px 8px rgba(0,0,0,0.07); }
+        .math-block { margin: 1.8rem 0; padding: 1.2rem; background-color: var(--secondary-color); border-left: 5px solid var(--primary-color); font-size: 1.1rem; overflow-x: auto; border-radius: 0.3rem;}
+        .footer-attribution { margin-top: 3rem; font-size: 0.9rem; line-height: 1.3rem; color: var(--text-light); text-align: center; padding-top:1.8rem; border-top:1px solid var(--border-color);}
+        .explanation { background-color: var(--bg-section-white); padding: 1.5rem; border-radius: 0.375rem; border: 1px solid var(--border-color); margin-top: 1.2rem; font-size: 0.95rem;}
+        .explanation p, .explanation li { margin-bottom: 0.7rem; }
+        .figure-placeholder { display: flex; flex-direction: column; justify-content: center; align-items: center; background-color: #e2e8f0; border: 1px dashed #a0aec0; border-radius: 0.375rem; padding: 2rem; margin: 1.8rem auto; text-align: center; color: var(--text-medium); max-width: 100%; }
+        .figure-title { font-weight: 600; margin-bottom: 0.8rem; color: var(--text-dark); font-size:0.95rem; }
+        .value-highlight { font-weight: 700; color: #2f855a; } /* Green for values */
+         mjx-container { display: inline-block !important; margin: 0 0.1em;}
+         .original-enunciat { background-color: #ebf4ff; border-left: 4px solid var(--primary-color); padding: 1.2rem; margin-bottom: 2.5rem; font-style: italic; color: var(--primary-darker-color); border-radius: 0.3rem;}
+         .table-container { overflow-x: auto; margin-top:1.2rem; margin-bottom:1.2rem; border: 1px solid var(--border-color); border-radius: 0.3rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05);}
+         table { width: 100%; min-width: 650px; border-collapse: collapse; }
+         th, td { border: 1px solid #e2e8f0; padding: 0.7rem 0.9rem; text-align: left; font-size:0.95rem; }
+         th { background-color: var(--table-header-bg); color: var(--table-header-text); font-weight: 600; }
+         td { background-color: var(--bg-section-white); }
+         tr:nth-child(even) td { background-color: #f7fafc; }
+         .assumption { font-style: italic; color: #5a6578; margin-top: 0.5rem; font-size: 0.9rem; background-color: #eef2f7; padding: 0.5rem; border-radius: 0.25rem;}
+         .reference-note { font-size: 0.85rem; color: #718096; margin-top: 0.5rem; }
+         .final-answer-box { background-color: #d1fae5; color: #065f46; padding: 1rem; border-radius: 0.375rem; font-weight: 600; margin-top: 1rem; border: 1px solid #6ee7b7;}
+    </style>
+</head>
+<body class="bg-main text-dark antialiased">
+
+    <header class="bg-gradient-to-r from-blue-600 to-blue-500 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-6">
+            <h1 class="text-3xl md:text-4xl font-bold tracking-tight">Anàlisi d'un Cristal·litzador Swenson-Walker</h1>
+            <p class="text-xl font-semibold mt-1 opacity-90">Problema de Cristal·lització de Fosfat de Sodi</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 md:px-6">
+
+        <section id="enunciat-original" class="original-enunciat">
+             <h3 class="!mt-0 !mb-3 !border-none text-blue-800 font-semibold">Enunciat Original (Problema 2, Cap. 6)</h3>
+             <p class="!mb-1">Una dissolució aquosa de fosfat de sodi al 23% màssic es refreda de 40\(^\circ\)C a 25\(^\circ\)C en un cristal·litzador Swenson-Walker (i.e. cristal·litzador tipus tanc agitat amb serpentí de refrigeració), formant-se cristalls de la sal dodecahidratada. La solubilitat del fosfat de sodi a 25\(^\circ\)C és igual a 15,5 kg/100 kg d’aigua. Es volen obtenir 4 kg/min de cristalls. La capacitat calorífica de la solució es pot considerar constant (i.e. independent de la temperatura i de la concentració), igual a 3200 J/kg·K. L’entalpia de cristal·lització és igual a −146,5 kJ/kg (de cristalls hidratats). L’aigua de refrigeració entra a 15\(^\circ\)C i en surt a 20\(^\circ\)C. El coeficient global de transmissió de calor és de 180 W/m\(^2\)·K.</p>
+             <p class="!font-semibold !mb-0">Calculeu:</p>
+             <ol class="list-alpha list-inside pl-4 !mb-0">
+                 <li>l’àrea de bescanvi del serpentí de refrigeració;</li>
+                 <li>el cabal màssic d’aigua de refrigeració;</li>
+                 <li>la potència calorífica transferida a través del serpentí de refrigeració.</li>
+             </ol>
+        </section>
+
+        <section id="plantejament" class="mb-12 p-6 rounded-lg shadow-xl section-bg-white">
+            <h2 class="text-blue-700 border-b-2 border-blue-400 pb-2 mb-6">1. Plantejament del Problema i Dades d'Entrada</h2>
+            <p>Aquest problema implica l'anàlisi d'un cristal·litzador continu Swenson-Walker on una dissolució de fosfat de sodi (\(\text{Na}_3\text{PO}_4\)) es refreda per induir la cristal·lització de la sal dodecahidratada (\(\text{Na}_3\text{PO}_4 \cdot 12\text{H}_2\text{O}\)). L'objectiu és determinar paràmetres clau del disseny i operació, com l'àrea de transferència de calor i el flux de refrigerant.</p>
+            <div class="explanation">
+                <p><strong>Dades Clau i Símbols:</strong></p>
+                <ul class="list-disc list-inside ml-4">
+                    <li>Alimentació (\(F\)): Concentració \(x_F = 0.23\) (fracció màssica \(\text{Na}_3\text{PO}_4\)), Temperatura \(T_F = 40^\circ\text{C}\).</li>
+                    <li>Cristalls (\(C\)): Forma \(\text{Na}_3\text{PO}_4 \cdot 12\text{H}_2\text{O}\), Producció \(\dot{m}_C = 4 \, \text{kg/min}\).</li>
+                    <li>Dissolució Mare (\(D\)): Surt a \(T_D = 25^\circ\text{C}\), saturada.</li>
+                    <li>Solubilitat a 25\(^\circ\)C (\(S_{25}\)): 15.5 kg \(\text{Na}_3\text{PO}_4\) / 100 kg \(\text{H}_2\text{O}\).</li>
+                    <li>Capacitat Calorífica de la dissolució (\(C_{p,sol}\)): \(3200 \, \text{J/(kg·K)}\).</li>
+                    <li>Entalpia de Cristal·lització (\(\Delta H_c\)): \(-146.5 \, \text{kJ/kg}\) de cristalls hidratats.</li>
+                    <li>Aigua de Refrigeració: Entrada \(T_{w,in} = 15^\circ\text{C}\), Sortida \(T_{w,out} = 20^\circ\text{C}\). \(C_{p,w} \approx 4186 \, \text{J/(kg·K)}\).</li>
+                    <li>Coeficient Global de Transmissió de Calor (\(U\)): \(180 \, \text{W/(m}^2\text{·K)}\).</li>
+                </ul>
+                 <p class="assumption">Suposicions principals: estat estacionari, cristal·litzador ben agitat (temperatura uniforme de la solució igual a la de sortida, \(T_D = 25^\circ\text{C}\)), no hi ha evaporació de dissolvent, els cristalls són purs i corresponen a la forma dodecahidratada.</p>
+            </div>
+             <div class="figure-placeholder mt-6">
+                <span class="figure-title">Esquema Conceptual d'un Cristal·litzador Swenson-Walker</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 300" width="400" height="240" class="my-2">
+                    <rect x="50" y="70" width="400" height="160" rx="10" ry="10" fill="#dbeafe" stroke="#60a5fa" stroke-width="2"/>
+                    <text x="250" y="60" font-family="Inter, sans-serif" font-size="14" text-anchor="middle" fill="#2563eb">Cristal·litzador Swenson-Walker</text>
+                    <line x1="10" y1="150" x2="50" y2="150" stroke="#374151" stroke-width="2" marker-end="url(#arrowS)"/>
+                    <text x="30" y="140" font-family="Inter, sans-serif" font-size="12" text-anchor="middle">F, \(x_F\), \(T_F\)</text>
+                    <line x1="250" y1="230" x2="250" y2="280" stroke="#047857" stroke-width="2" marker-end="url(#arrowS)"/>
+                    <text x="250" y="290" font-family="Inter, sans-serif" font-size="12" text-anchor="middle">C, \(x_C\), \(T_D\)</text>
+                    <line x1="450" y1="150" x2="490" y2="150" stroke="#374151" stroke-width="2" marker-end="url(#arrowS)"/>
+                    <text x="470" y="140" font-family="Inter, sans-serif" font-size="12" text-anchor="middle">D, \(x_D\), \(T_D\)</text>
+                    <path d="M 80 110 C 100 90, 120 90, 140 110 S 180 130, 200 110 S 240 90, 260 110 S 300 130, 320 110 S 360 90, 380 110 S 420 130, 420 110" fill="none" stroke="#3b82f6" stroke-width="3"/>
+                    <line x1="70" y1="190" x2="100" y2="190" stroke="#3b82f6" stroke-width="2" marker-end="url(#arrowCool)"/>
+                    <text x="85" y="205" font-family="Inter, sans-serif" font-size="10" text-anchor="middle">Aigua Freda \(T_{w,in}\)</text>
+                    <line x1="400" y1="190" x2="430" y2="190" stroke="#ef4444" stroke-width="2" marker-start="url(#arrowCoolRev)"/>
+                    <text x="415" y="205" font-family="Inter, sans-serif" font-size="10" text-anchor="middle">Aigua Calenta \(T_{w,out}\)</text>
+                    <defs>
+                      <marker id="arrowS" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#374151" /></marker>
+                      <marker id="arrowCool" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#3b82f6" /></marker>
+                      <marker id="arrowCoolRev" viewBox="0 0 10 10" refX="2" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 10 0 L 0 5 L 10 10 z" fill="#ef4444" /></marker>
+                    </defs>
+                </svg>
+                <p class="text-sm mt-2">Esquema simplificat mostrant els corrents principals i el serpentí de refrigeració.</p>
+            </div>
+        </section>
+
+        <section id="resolucio" class="mb-12 p-6 rounded-lg shadow-xl section-bg-white">
+            <h2 class="text-blue-700 border-b-2 border-blue-400 pb-2 mb-6">2. Metodologia de Resolució i Càlculs Detallats</h2>
+
+            <div class="calculation-step">
+                <h3>Pas 2.1: Conversions Inicials i Masses Moleculars</h3>
+                <div class="explanation">
+                    <p><strong>Producció de cristalls (\(\dot{m}_C\)):</strong></p>
+                    <p>\( \dot{m}_C = 4 \, \text{kg/min} \times \frac{1 \, \text{min}}{60 \, \text{s}} = \frac{4}{60} \, \text{kg/s} \approx \) <span class="value-highlight">0.06667</span> \( \, \text{kg/s} \)</p>
+                    <p><strong>Entalpia de cristal·lització (\(\Delta H_c\)):</strong></p>
+                    <p>\( \Delta H_c = -146.5 \, \text{kJ/kg} = \) <span class="value-highlight">\(-146500\)</span> \( \, \text{J/kg} \) (de cristalls hidratats)</p>
+                    <p><strong>Masses Moleculars (aproximades):</strong> Na = 23, P = 31, O = 16, H = 1 g/mol.</p>
+                    <p>Fosfat de sodi anhidre (\(\text{Na}_3\text{PO}_4\), \(M_A\)):</p>
+                    <p>\( M_A = (3 \times 23) + 31 + (4 \times 16) = 69 + 31 + 64 = \) <span class="value-highlight">164</span> g/mol.</p>
+                    <p>Aigua (\(\text{H}_2\text{O}\), \(M_W\)): \( (2 \times 1) + 16 = \) <span class="value-highlight">18</span> g/mol.</p>
+                    <p>Fosfat de sodi dodecahidratat (\(\text{Na}_3\text{PO}_4 \cdot 12\text{H}_2\text{O}\), \(M_H\)):</p>
+                    <p>\( M_H = M_A + 12 \times M_W = 164 + (12 \times 18) = 164 + 216 = \) <span class="value-highlight">380</span> g/mol.</p>
+                </div>
+            </div>
+
+            <div class="calculation-step">
+                <h3>Pas 2.2: Composicions i Balanços de Matèria</h3>
+                <div class="explanation">
+                    <p><strong>Fracció màssica de \(\text{Na}_3\text{PO}_4\) en els cristalls (\(x_C\)):</strong></p>
+                    <p>\( x_C = \frac{M_A}{M_H} = \frac{164}{380} \approx \) <span class="value-highlight">0.4316</span></p>
+                    <p><strong>Fracció màssica de \(\text{Na}_3\text{PO}_4\) en la dissolució mare saturada a 25\(^\circ\)C (\(x_D\)):</strong></p>
+                    <p>Solubilitat = 15.5 kg \(\text{Na}_3\text{PO}_4\) / 100 kg \(\text{H}_2\text{O}\).</p>
+                    <p>\( x_D = \frac{\text{massa de } \text{Na}_3\text{PO}_4}{\text{massa de } \text{Na}_3\text{PO}_4 + \text{massa de } \text{H}_2\text{O}} = \frac{15.5}{15.5 + 100} = \frac{15.5}{115.5} \approx \) <span class="value-highlight">0.1342</span></p>
+                    <p><strong>Balanços de matèria (en estat estacionari, cabals màssics \(\dot{m}\)):</strong></p>
+                    <p>Balanç global: \( \dot{m}_F = \dot{m}_D + \dot{m}_C \)</p>
+                    <p>Balanç de solut (\(\text{Na}_3\text{PO}_4\)): \( \dot{m}_F x_F = \dot{m}_D x_D + \dot{m}_C x_C \)</p>
+                    <p>Coneixem \(\dot{m}_C = 0.06667 \, \text{kg/s}\), \(x_F = 0.23\), \(x_D = 0.1342\), \(x_C = 0.4316\).</p>
+                    <p>Substituint \(\dot{m}_F = \dot{m}_D + \dot{m}_C\) en el balanç de solut:</p>
+                    <p>\( (\dot{m}_D + \dot{m}_C) x_F = \dot{m}_D x_D + \dot{m}_C x_C \)</p>
+                    <p>\( \dot{m}_D x_F + \dot{m}_C x_F = \dot{m}_D x_D + \dot{m}_C x_C \)</p>
+                    <p>\( \dot{m}_D (x_F - x_D) = \dot{m}_C (x_C - x_F) \)</p>
+                    <p>\( \dot{m}_D = \dot{m}_C \frac{x_C - x_F}{x_F - x_D} = 0.06667 \, \text{kg/s} \times \frac{0.4316 - 0.23}{0.23 - 0.1342} \)</p>
+                    <p>\( \dot{m}_D = 0.06667 \times \frac{0.2016}{0.0958} \approx 0.06667 \times 2.10438 \approx \) <span class="value-highlight">0.14028</span> \( \, \text{kg/s} \) (Dissolució Mare)</p>
+                    <p>Ara calculem \(\dot{m}_F\):</p>
+                    <p>\( \dot{m}_F = \dot{m}_D + \dot{m}_C = 0.14028 \, \text{kg/s} + 0.06667 \, \text{kg/s} \approx \) <span class="value-highlight">0.20695</span> \( \, \text{kg/s} \) (Alimentació)</p>
+                    <p class="reference-note">(Valors consistents amb el PDF: D \(\approx\) 0.140276 kg/s, F \(\approx\) 0.206943 kg/s).</p>
+                </div>
+            </div>
+
+            <div class="calculation-step">
+                <h3>Pas 2.3: Balanç d'Energia i Potència Calorífica Transferida (\(\dot{Q}\))</h3>
+                <p>El balanç d'energia per al cristal·litzador, considerant que la calor eliminada és la suma de la calor sensible per refredar l'alimentació i la calor de cristal·lització alliberada, és:</p>
+                <div class="math-block">
+                    $$ \dot{Q}_{\text{eliminada}} = \dot{m}_F C_{p,sol} (T_F - T_D) - \dot{m}_C \Delta H_c $$
+                </div>
+                <p class="assumption">Nota: \(\Delta H_c\) és negatiu (exotèrmic), per tant, \(- \dot{m}_C \Delta H_c\) serà un terme positiu que representa la calor que s'ha d'eliminar degut a la cristal·lització.</p>
+                <div class="explanation">
+                    <p>\( T_F = 40^\circ\text{C} \), \( T_D = 25^\circ\text{C} \), \(\Delta T = T_F - T_D = 15^\circ\text{C} = 15 \, \text{K} \).</p>
+                    <p>Calor sensible: \( \dot{Q}_{sens} = \dot{m}_F C_{p,sol} \Delta T = (0.20695 \, \text{kg/s}) \times (3200 \, \text{J/kg·K}) \times (15 \, \text{K}) \)</p>
+                    <p>\( \dot{Q}_{sens} \approx 9933.6 \, \text{J/s} = 9933.6 \, \text{W} \)</p>
+                    <p>Calor de cristal·lització a eliminar: \( \dot{Q}_{crist} = - \dot{m}_C \Delta H_c = - (0.06667 \, \text{kg/s}) \times (-146500 \, \text{J/kg}) \)</p>
+                    <p>\( \dot{Q}_{crist} \approx 9767.15 \, \text{J/s} = 9767.15 \, \text{W} \)</p>
+                    <p>Potència calorífica total transferida (eliminada):</p>
+                    <p>\( \dot{Q} = \dot{Q}_{sens} + \dot{Q}_{crist} = 9933.6 \, \text{W} + 9767.15 \, \text{W} = 19700.75 \, \text{W} \approx \) <span class="value-highlight">19.70</span> \( \, \text{kW} \)</p>
+                    <div class="final-answer-box">c) Potència calorífica transferida (\(\dot{Q}\)): \( \approx \) <span class="value-highlight">19.7 kW</span></div>
+                    <p class="reference-note">(Consistent amb el PDF, que indica \(\dot{Q}_c = -19699.9 \, \text{W}\), sent \(\dot{Q}_t = |\dot{Q}_c|\)).</p>
+                </div>
+            </div>
+
+            <div class="calculation-step">
+                <h3>Pas 2.4: Cabal Màssic d'Aigua de Refrigeració (\(\dot{m}_w\))</h3>
+                <p>La calor eliminada del sistema de cristal·lització és absorbida per l'aigua de refrigeració.</p>
+                <div class="math-block">
+                    $$ \dot{Q} = \dot{m}_w C_{p,w} (T_{w,out} - T_{w,in}) $$
+                </div>
+                <div class="explanation">
+                    <p>\( T_{w,out} = 20^\circ\text{C} \), \( T_{w,in} = 15^\circ\text{C} \), \(\Delta T_w = 5^\circ\text{C} = 5 \, \text{K} \).</p>
+                    <p>\( C_{p,w} \approx 4186 \, \text{J/(kg·K)} \).</p>
+                    <p>\( \dot{m}_w = \frac{\dot{Q}}{C_{p,w} \Delta T_w} = \frac{19700.75 \, \text{W}}{(4186 \, \text{J/kg·K}) \times (5 \, \text{K})} \)</p>
+                    <p>\( \dot{m}_w = \frac{19700.75}{20930} \approx \) <span class="value-highlight">0.94127</span> \( \, \text{kg/s} \)</p>
+                    <p>Convertint a kg/min:</p>
+                    <p>\( \dot{m}_w \approx 0.94127 \, \text{kg/s} \times 60 \, \text{s/min} \approx \) <span class="value-highlight">56.48</span> \( \, \text{kg/min} \)</p>
+                    <div class="final-answer-box">b) Cabal màssic d’aigua de refrigeració (\(\dot{m}_w\)): \( \approx \) <span class="value-highlight">56.5 kg/min</span></div>
+                    <p class="reference-note">(Consistent amb el PDF).</p>
+                </div>
+            </div>
+
+            <div class="calculation-step">
+                <h3>Pas 2.5: Àrea de Bescanvi del Serpentí (\(A\))</h3>
+                <p>L'àrea es calcula utilitzant l'equació de transferència de calor amb la Diferència de Temperatura Mitjana Logarítmica (LMTD).</p>
+                <div class="math-block">
+                    $$ \dot{Q} = U A \Delta T_{lm} $$
+                </div>
+                <p class="assumption">S'assumeix que la temperatura de la dissolució en el cristal·litzador és uniforme i igual a la temperatura de sortida de la dissolució mare, \(T_{sol} = T_D = 25^\circ\text{C}\). El serpentí opera en contracorrent respecte al flux de calor (l'aigua s'escalfa mentre la solució es refreda/cristal·litza).</p>
+                <div class="explanation">
+                    <p>Temperatures per al càlcul de \(\Delta T_{lm}\) (entre la solució a 25\(^\circ\)C i l'aigua de refrigeració):</p>
+                    <p>\( \Delta T_1 = T_{sol} - T_{w,in} = 25^\circ\text{C} - 15^\circ\text{C} = 10^\circ\text{C} \) (diferència a l'entrada d'aigua / sortida de calor)</p>
+                    <p>\( \Delta T_2 = T_{sol} - T_{w,out} = 25^\circ\text{C} - 20^\circ\text{C} = 5^\circ\text{C} \) (diferència a la sortida d'aigua / entrada de calor)</p>
+                    <p class="reference-note">(Aquesta és la configuració que dóna la \(\Delta T_{lm}\) utilitzada en el PDF. Implica que la solució està a 25\(^\circ\)C al llarg de tot el serpentí.)</p>
+                    <p>\( \Delta T_{lm} = \frac{\Delta T_1 - \Delta T_2}{\ln(\Delta T_1 / \Delta T_2)} = \frac{10 - 5}{\ln(10 / 5)} = \frac{5}{\ln(2)} \approx \frac{5}{0.693147} \approx \) <span class="value-highlight">7.213</span> \( \, ^\circ\text{C} \) (o K)</p>
+                    <p>Ara calculem l'àrea \(A\):</p>
+                    <p>\( A = \frac{\dot{Q}}{U \Delta T_{lm}} = \frac{19700.75 \, \text{W}}{(180 \, \text{W/(m}^2\text{·K)}) \times (7.213 \, \text{K})} \)</p>
+                    <p>\( A \approx \frac{19700.75}{1298.34} \approx \) <span class="value-highlight">15.173</span> \( \, \text{m}^2 \)</p>
+                    <div class="final-answer-box">a) Àrea de bescanvi del serpentí (\(A\)): \( \approx \) <span class="value-highlight">15.2 m²</span></div>
+                    <p class="reference-note">(Consistent amb el PDF).</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="resum" class="mb-12 p-6 rounded-lg shadow-xl section-bg-light">
+            <h2 class="text-blue-700 border-b-2 border-blue-400 pb-2 mb-6">3. Resum dels Resultats</h2>
+            <p>Els resultats calculats per a l'operació del cristal·litzador Swenson-Walker sota les condicions especificades són:</p>
+            <div class="explanation">
+                <ul class="list-none space-y-3">
+                    <li>
+                        <strong>a) Potència Calorífica Transferida (\(\dot{Q}\)):</strong>
+                        <div class="final-answer-box">\( \approx \) <span class="value-highlight">19.7 kW</span></div>
+                    </li>
+                    <li>
+                        <strong>b) Cabal Màssic d'Aigua de Refrigeració (\(\dot{m}_w\)):</strong>
+                        <div class="final-answer-box">\( \approx \) <span class="value-highlight">56.5 kg/min</span> (o 0.941 kg/s)</div>
+                    </li>
+                    <li>
+                        <strong>c) Àrea de Bescanvi del Serpentí (\(A\)):</strong>
+                        <div class="final-answer-box">\( \approx \) <span class="value-highlight">15.2 m²</span></div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="discussio" class="mb-12 p-6 rounded-lg shadow-xl section-bg-white">
+            <h2 class="text-blue-700 border-b-2 border-blue-400 pb-2 mb-6">4. Discussió i Consideracions Addicionals (Estil Geankoplis)</h2>
+            <div class="explanation">
+                <p>L'anàlisi d'aquest cristal·litzador Swenson-Walker il·lustra els principis fonamentals dels balanços de matèria i energia aplicats a processos de separació per cristal·lització. Diverses consideracions són importants per a una comprensió més profunda i per al disseny pràctic:</p>
+                <ul class="list-disc list-inside ml-4 space-y-3">
+                    <li><strong>Precisió de les Dades de Solubilitat:</strong> La corba de solubilitat és crítica. Errors en aquestes dades afecten directament el rendiment teòric de cristalls i, per tant, tots els càlculs energètics i de dimensionament. Per a sistemes reals, és crucial utilitzar dades experimentals fiables.</li>
+                    <li><strong>Entalpia de Cristal·lització:</strong> Aquesta propietat (\(\Delta H_c\)) representa la calor alliberada (o absorbida) durant la formació de la fase cristal·lina a partir d'una dissolució saturada. El seu valor i signe són fonamentals. En aquest cas, és exotèrmica, contribuint a la càrrega tèrmica que ha de ser eliminada.</li>
+                    <li><strong>Suposició de Temperatura Uniforme al Cristal·litzador:</strong> Per al càlcul de la \(\Delta T_{lm}\) del serpentí, s'ha assumit que la temperatura de la suspensió cristal·lina és uniforme i igual a \(25^\circ\text{C}\). Aquesta és una aproximació raonable per a cristal·litzadors ben agitats com el Swenson-Walker, on la resistència principal a la transferència de calor es troba al costat del fluid refrigerant o en les incrustacions. La calor sensible per refredar l'alimentació de \(40^\circ\text{C}\) a \(25^\circ\text{C}\) s'ha comptabilitzat correctament en el balanç d'energia global.</li>
+                    <li><strong>Coeficient Global de Transferència de Calor (\(U\)):</strong> El valor de \(U\) (180 W/m\(^2\)·K) és un paràmetre empíric que depèn de molts factors, incloent el tipus de fluid, les velocitats, les propietats del material del serpentí i, de forma molt significativa, la possible formació d'incrustacions (fouling) a la superfície del serpentí. Les incrustacions poden reduir dràsticament el valor de \(U\) amb el temps d'operació, requerint sobredimensionament o neteges periòdiques.</li>
+                    <li><strong>Cinètica de Cristal·lització i Sobresaturació:</strong> Aquest problema assumeix que la cristal·lització ocorre fins a assolir l'equilibri de saturació. En la pràctica, es requereix un cert grau de sobresaturació per impulsar la nucleació i el creixement dels cristalls. La velocitat de refredament i l'agitació influeixen en la mida i distribució dels cristalls (CSD), aspectes no coberts aquí però crucials en el disseny detallat. Un refredament massa ràpid pot portar a una sobresaturació excessiva, nucleació espontània descontrolada i cristalls petits o aglomerats.</li>
+                    <li><strong>Tipus de Cristal·litzador (Swenson-Walker):</strong> Aquest tipus de cristal·litzador és un tanc horitzontal allargat, sovint semicilíndric, amb un eix agitat amb pales o un transportador de cargol que també actua com a rascador per evitar l'acumulació de cristalls a les superfícies de refredament (jaqueta o serpentins interns). És adequat per a produccions moderades i quan es desitja un control raonable de la mida del cristall.</li>
+                </ul>
+                <p>En resum, la resolució d'aquest problema proporciona una base quantitativa per al dimensionament preliminar del sistema de cristal·lització. Un disseny final requeriria una consideració més detallada de la cinètica, la morfologia dels cristalls, el fouling i l'optimització econòmica global del procés.</p>
+            </div>
+        </section>
+           <section class="mt-12 text-center grid grid-cols-2 gap-4">
+            <a href="https://marquezrn03.github.io/EjerciciosCristalizacion/Ejerc3.html" class="styled-button-link"> Next: Ejercicio 3 MgSO4</a>
+        </section>
+
+
+    </main>
+
+    <footer class="mt-16 pt-8 border-t border-gray-300 text-sm text-gray-600">
+        <p class="footer-attribution">Anàlisi d'Operacions Unitàries - Curs Avançat</p>
+    </footer>
+
+    <script>
+        // No cal JavaScript per funcionalitat, només per MathJax.
+        // MathJax s'executarà automàticament en carregar la pàgina.
+    </script>
+
+</body>
+</html>
