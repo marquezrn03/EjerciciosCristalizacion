@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagrama de Fases Eutèctic: Benzè-Naftalè (Problema 4)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        window.MathJax = {
+          tex: {
+            inlineMath: [['\\(', '\\)']],
+            displayMath: [['$$', '$$'], ['\\[', '\\]']],
+            processEscapes: true,
+            tags: 'ams'
+          },
+          svg: {
+            fontCache: 'global'
+          },
+          options: {
+            skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            ignoreHtmlClass: 'tex2jax_ignore',
+            processHtmlClass: 'tex2jax_process'
+          }
+        };
+        </script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js" async id="MathJax-script"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #3b82f6; /* Blau Geankoplis */
+            --primary-darker-color: #2563eb;
+            --secondary-color: #dbeafe; /* Blau molt clar per accents */
+            --text-dark: #1f2937;
+            --text-medium: #4b5563;
+            --text-light: #6b7280;
+            --bg-main: #f9fafb;
+            --bg-section-light: #eff6ff;
+            --bg-section-white: #ffffff;
+            --border-color: #d1d5db;
+            --table-header-bg: #bfdbfe; 
+            --table-header-text: #1e3a8a;
+        }
+        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; background-color: var(--bg-main); color: var(--text-dark); }
+        h1, h2, h3, h4 { font-family: 'Inter', sans-serif; }
+        h1 { color: var(--text-dark); font-size: 2.25rem; line-height: 2.5rem; font-weight: 700; letter-spacing: -0.025em;}
+        h2 { color: var(--primary-darker-color); font-size: 1.8rem; line-height: 2.2rem; font-weight: 700; border-bottom: 3px solid var(--primary-color); padding-bottom: 0.6rem; margin-top: 3rem; margin-bottom: 2rem; }
+        h3 { color: var(--primary-darker-color); font-size: 1.45rem; line-height: 1.95rem; font-weight: 600; margin-top: 2.5rem; margin-bottom: 1.4rem; border-bottom: 1px solid var(--secondary-color); padding-bottom: 0.4rem; }
+        h4 { color: var(--primary-darker-color); font-size: 1.2rem; line-height: 1.75rem; font-weight: 600; margin-top: 2rem; margin-bottom: 0.9rem; }
+        p, li { color: var(--text-medium); line-height: 1.8; margin-bottom: 1.1rem; font-size: 1rem; }
+        strong { color: var(--text-dark); font-weight: 600; }
+        .section-bg-light { background-color: var(--bg-section-light); padding: 2.5rem; border-radius: 0.5rem; margin-bottom: 2.5rem; box-shadow: 0 3px 6px rgba(0,0,0,0.05); }
+        .section-bg-white { background-color: var(--bg-section-white); padding: 2.5rem; border-radius: 0.5rem; margin-bottom: 2.5rem; box-shadow: 0 4px 8px rgba(0,0,0,0.07); }
+        .math-block { margin: 1.8rem 0; padding: 1.2rem; background-color: var(--secondary-color); border-left: 5px solid var(--primary-color); font-size: 1.1rem; overflow-x: auto; border-radius: 0.3rem;}
+        .footer-attribution { margin-top: 3rem; font-size: 0.9rem; line-height: 1.3rem; color: var(--text-light); text-align: center; padding-top:1.8rem; border-top:1px solid var(--border-color);}
+        .explanation { background-color: var(--bg-section-white); padding: 1.5rem; border-radius: 0.375rem; border: 1px solid var(--border-color); margin-top: 1.2rem; font-size: 0.95rem;}
+        .explanation p, .explanation li { margin-bottom: 0.7rem; }
+        .figure-placeholder { display: flex; flex-direction: column; justify-content: center; align-items: center; background-color: #e2e8f0; border: 1px dashed #a0aec0; border-radius: 0.375rem; padding: 2rem; margin: 1.8rem auto; text-align: center; color: var(--text-medium); max-width: 100%; }
+        .figure-title { font-weight: 600; margin-bottom: 0.8rem; color: var(--text-dark); font-size:0.95rem; }
+        .value-highlight { font-weight: 700; color: #2f855a; /* Green for values */ }
+         mjx-container { display: inline-block !important; margin: 0 0.1em;}
+         .original-enunciat { background-color: #ebf4ff; border-left: 4px solid var(--primary-color); padding: 1.2rem; margin-bottom: 2.5rem; font-style: italic; color: var(--primary-darker-color); border-radius: 0.3rem;}
+         .assumption { font-style: italic; color: #5a6578; margin-top: 0.5rem; font-size: 0.9rem; background-color: #eef2f7; padding: 0.5rem; border-radius: 0.25rem;}
+         .reference-note { font-size: 0.85rem; color: #718096; margin-top: 0.5rem; }
+         .final-answer-box { background-color: #d1fae5; color: #065f46; padding: 1rem; border-radius: 0.375rem; font-weight: 600; margin-top: 1rem; border: 1px solid #6ee7b7;}
+    </style>
+</head>
+<body class="bg-main text-dark antialiased">
+
+    <header class="bg-gradient-to-r from-blue-600 to-blue-500 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-6 py-6">
+            <h1 class="text-3xl md:text-4xl font-bold tracking-tight">Anàlisi de Diagrames de Fases Eutèctics Simples</h1>
+            <p class="text-xl font-semibold mt-1 opacity-90">Sistema Benzè-Naftalè (Problema 4, Cap. 6)</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8 md:px-6">
+
+        <section id="enunciat-original" class="original-enunciat">
+             <h3 class="!mt-0 !mb-3 !border-none text-blue-800 font-semibold">Enunciat Original (Problema 4)</h3>
+             <p class="!mb-1">a) Quina és la temperatura i la composició màssica del punt eutèctic de les dissolucions de benzè i naftalè?</p>
+             <p class="!mb-1">b) Una dissolució de naftalè (20% màssic) i benzè a 60\(^\circ\)C es refreda fins a 20\(^\circ\)C. Què s’observa?</p>
+             <p class="!mb-1">c) Una dissolució de naftalè (10% màssic) i benzè a 10\(^\circ\)C es refreda fins a 0\(^\circ\)C. Què es forma i quina composició màssica tenen els productes formats? Calculeu el rendiment en cristalls per cada 100 kg de dissolució inicial.</p>
+             <p class="!mb-1">d) Una dissolució de naftalè (60% màssic) i benzè a 60\(^\circ\)C es refreda fins a 30\(^\circ\)C. Què es forma i quina composició màssica tenen els productes formats? Calculeu el rendiment per cada 100 kg de dissolució inicial.</p>
+             <p class="!mb-1">e) Ídem, però el refredament continua fins a 0\(^\circ\)C.</p>
+             <p class="!mb-1">f) Ídem, però el refredament continua fins a −10\(^\circ\)C.</p>
+             <p class="!mb-0 assumption">Nota: En cap cas no es produeix evaporació.</p>
+        </section>
+
+        <section id="plantejament" class="mb-12 p-6 rounded-lg shadow-xl section-bg-white">
+            <h2 class="text-blue-700 border-b-2 border-blue-400 pb-2 mb-6">1. Introducció i Ús del Diagrama de Fases</h2>
+            <p>Aquest problema explora el comportament d'un sistema binari benzè-naftalè mitjançant el seu diagrama de fases temperatura-composició. Aquests diagrames són eines fonamentals en enginyeria química i ciència de materials per predir les fases presents en equilibri a diferents temperatures i composicions globals.</p>
+            <p>Per resoldre els diferents apartats, ens basarem en la interpretació del diagrama de fases proporcionat (referit com la figura a la pàgina 5 del document "formados Calcúlese el rendimiento en cristales.pdf").</p>
+            <div class="figure-placeholder mt-6">
+                <span class="figure-title">Diagrama de Fases Benzè-Naftalè (Esquemàtic)</span>
+                <p class="text-sm">[Aquí s'inclouria la imatge del diagrama de fases Benzè-Naftalè, similar a la figura de la pàgina 5 del PDF proporcionat. L'eix Y representa la Temperatura (\(^\circ\)C) i l'eix X el percentatge en massa de naftalè.]</p>
+                <p class="text-xs mt-2">El diagrama mostra les regions de líquid (L), sòlid benzè + líquid (S\(_{B}\) + L), sòlid naftalè + líquid (S\(_{N}\) + L), i sòlid benzè + sòlid naftalè (S\(_{B}\) + S\(_{N}\)). El punt B representa l'eutèctic.</p>
+            </div>
+            <p class="assumption">Se suposa que el sistema assoleix l'equilibri termodinàmic en cada etapa de refredament i que no hi ha efectes cinètics com la sobresaturació significativa.</p>
+        </section>
+
+        <section id="resolucio" class="mb-12 p-6 rounded-lg shadow-xl section-bg-white">
+            <h2 class="text-blue-700 border-b-2 border-blue-400 pb-2 mb-6">2. Resolució Detallada dels Apartats</h2>
+
+            <div class="calculation-step">
+                <h3>Apartat a): Punt Eutèctic</h3>
+                <p><strong>Pregunta:</strong> Quina és la temperatura i la composició màssica del punt eutèctic de les dissolucions de benzè i naftalè?</p>
+                <div class="explanation">
+                    <p>El punt eutèctic (punt B al diagrama típic) és el punt on la fase líquida està en equilibri amb dues fases sòlides (benzè sòlid i naftalè sòlid) i representa la temperatura mínima a la qual una mescla líquida d'aquesta composició pot existir. És el punt d'intersecció de les corbes de liquidus del benzè i del naftalè.</p>
+                    <p>Observant el diagrama de fases proporcionat:</p>
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Temperatura Eutèctica (\(T_E\)): <span class="value-highlight">\(-3.5^\circ\text{C}\)</span></li>
+                        <li>Composició Eutèctica (\(x_{E, \text{naftalè}}\)): <span class="value-highlight">18.9% en massa de naftalè</span> (la resta, 81.1%, és benzè).</li>
+                    </ul>
+                    <div class="final-answer-box mt-4">Punt Eutèctic: T = -3.5\(^\circ\)C, Composició = 18.9% naftalè.</div>
+                </div>
+            </div>
+
+            <div class="calculation-step">
+                <h3>Apartat b): Refredament d'una Dissolució al 20% de Naftalè</h3>
+                <p><strong>Pregunta:</strong> Una dissolució de naftalè (20% màssic) i benzè a 60\(^\circ\)C es refreda fins a 20\(^\circ\)C. Què s’observa?</p>
+                <div class="explanation">
+                    <p>1. <strong>Punt Inicial:</strong> Localitzem el punt (60\(^\circ\)C, 20% naftalè) al diagrama. Aquesta temperatura és superior al punt de fusió del benzè pur (\(\sim 5.5^\circ\text{C}\)) i del naftalè pur (\(\sim 80.2^\circ\text{C}\)), i per a una mescla del 20%, es troba clarament a la regió líquida (L).</p>
+                    <p>2. <strong>Refredament:</strong> Tracem una línia vertical descendent des del punt inicial fins a la isoterma de 20\(^\circ\)C.</p>
+                    <p>3. <strong>Punt Final:</strong> El punt (20\(^\circ\)C, 20% naftalè).</p>
+                    <p>Consultant el diagrama de fases (específicament la corba de liquidus del naftalè i la del benzè), per a una composició del 20% de naftalè, la temperatura a la qual començaria la cristal·lització (temperatura de liquidus) és superior a -0.6\(^\circ\)C (aproximadament, segons el PDF adjunt, la corba de liquidus del naftalè per a \(x_{\text{naftalè}} > x_E\), o la del benzè per a \(x_{\text{naftalè}} < x_E\)). Com que 20\(^\circ\)C és significativament superior a la temperatura de liquidus per a aquesta composició (i també superior a la temperatura eutèctica), la dissolució roman completament líquida i insaturada.</p>
+                    <div class="final-answer-box mt-4">A 20\(^\circ\)C, la dissolució al 20% de naftalè continua essent una fase líquida homogènia i insaturada. No s'observa formació de cristalls.</div>
+                </div>
+            </div>
+
+            <div class="calculation-step">
+                <h3>Apartat c): Refredament d'una Dissolució al 10% de Naftalè</h3>
+                <p><strong>Pregunta:</strong> Una dissolució de naftalè (10% màssic) i benzè a 10\(^\circ\)C es refreda fins a 0\(^\circ\)C. Què es forma i quina composició màssica tenen els productes formats? Calculeu el rendiment en cristalls per cada 100 kg de dissolució inicial.</p>
+                <div class="explanation">
+                    <p>Base de càlcul: 100 kg de dissolució inicial (\(M = 100 \, \text{kg}\)).</p>
+                    <p>Composició global del sistema (\(x_M\)): 10% naftalè (0.10 fracció màssica de naftalè).</p>
+                    <p>1. <strong>Punt Inicial:</strong> (10\(^\circ\)C, 10% naftalè). Aquesta dissolució és líquida.</p>
+                    <p>2. <strong>Punt Final:</strong> (0\(^\circ\)C, 10% naftalè global).</p>
+                    <p>Consultant el diagrama de fases a 0\(^\circ\)C: La composició global (10% naftalè) cau a la regió de dues fases: <strong>Benzè Sòlid (\(S_B\)) + Líquid Saturat (L)</strong>. Això és perquè 10% naftalè és inferior a la composició eutèctica (18.9% naftalè), indicant que el benzè serà el component que cristal·litza primer.</p>
+                    <p>A 0\(^\circ\)C, llegim del diagrama (o utilitzem les dades proporcionades):</p>
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Composició del líquid saturat (\(x_L\)): 14.5% naftalè (0.145 fracció màssica).</li>
+                        <li>Composició del sòlid format (\(x_S\)): Benzè pur, per tant, 0% naftalè (0.0 fracció màssica).</li>
+                    </ul>
+                    <p><strong>Aplicació de la Regla de la Palanca:</strong></p>
+                    <p>Sigui \(m_C\) la massa de cristalls de benzè i \(m_L\) la massa de dissolució mare líquida.</p>
+                    <p>Balanç global de massa: \( M = m_C + m_L \implies 100 = m_C + m_L \)</p>
+                    <p>Balanç de naftalè: \( M x_M = m_C x_S + m_L x_L \)</p>
+                    <p>\( 100 \times 0.10 = m_C \times 0.0 + m_L \times 0.145 \)</p>
+                    <p>\( 10 = 0.145 \, m_L \)</p>
+                    <p>\( m_L = \frac{10}{0.145} \approx \) <span class="value-highlight">68.97</span> kg (dissolució mare).</p>
+                    <p>\( m_C = M - m_L = 100 - 68.97 \approx \) <span class="value-highlight">31.03</span> kg (cristalls de benzè).</p>
+                    <div class="final-answer-box mt-4">
+                        Es formen aproximadament <span class="value-highlight">31.0 kg de cristalls de benzè pur</span>.<br>
+                        Queden aproximadament <span class="value-highlight">69.0 kg de dissolució mare líquida saturada</span>, amb una composició del <span class="value-highlight">14.5% de naftalè</span> (i 85.5% de benzè).<br>
+                        El rendiment en cristalls de benzè és de 31.0 kg.
+                    </div>
+                </div>
+            </div>
+
+            <div class="calculation-step">
+                <h3>Apartat d): Refredament d'una Dissolució al 60% de Naftalè a 30\(^\circ\)C</h3>
+                <p><strong>Pregunta:</strong> Una dissolució de naftalè (60% màssic) i benzè a 60\(^\circ\)C es refreda fins a 30\(^\circ\)C. Què es forma i quina composició màssica tenen els productes formats? Calculeu el rendiment per cada 100 kg de dissolució inicial.</p>
+                 <div class="explanation">
+                    <p>Base de càlcul: 100 kg de dissolució inicial (\(M = 100 \, \text{kg}\)).</p>
+                    <p>Composició global del sistema (\(x_M\)): 60% naftalè (0.60 fracció màssica de naftalè).</p>
+                    <p>1. <strong>Punt Inicial:</strong> (60\(^\circ\)C, 60% naftalè). Aquesta dissolució és líquida.</p>
+                    <p>2. <strong>Punt Final:</strong> (30\(^\circ\)C, 60% naftalè global).</p>
+                    <p>Consultant el diagrama a 30\(^\circ\)C: La composició global (60% naftalè) cau a la regió de dues fases: <strong>Naftalè Sòlid (\(S_N\)) + Líquid Saturat (L)</strong>. Això és perquè 60% naftalè és superior a la composició eutèctica (18.9% naftalè), indicant que el naftalè serà el component que cristal·litza primer.</p>
+                    <p>A 30\(^\circ\)C, llegim del diagrama (o utilitzem les dades proporcionades):</p>
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Composició del líquid saturat (\(x_L\)): 44.0% naftalè (0.44 fracció màssica).</li>
+                        <li>Composició del sòlid format (\(x_S\)): Naftalè pur, per tant, 100% naftalè (1.0 fracció màssica).</li>
+                    </ul>
+                    <p><strong>Aplicació de la Regla de la Palanca:</strong></p>
+                    <p>Sigui \(m_C\) la massa de cristalls de naftalè i \(m_L\) la massa de dissolució mare líquida.</p>
+                    <p>\( M x_M = m_C x_S + m_L x_L \)</p>
+                    <p>\( 100 \times 0.60 = m_C \times 1.0 + (100 - m_C) \times 0.44 \)</p>
+                    <p>\( 60 = m_C + 44 - 0.44 m_C \)</p>
+                    <p>\( 60 - 44 = m_C (1 - 0.44) \)</p>
+                    <p>\( 16 = 0.56 m_C \)</p>
+                    <p>\( m_C = \frac{16}{0.56} \approx \) <span class="value-highlight">28.57</span> kg (cristalls de naftalè).</p>
+                    <p>\( m_L = M - m_C = 100 - 28.57 \approx \) <span class="value-highlight">71.43</span> kg (dissolució mare).</p>
+                    <div class="final-answer-box mt-4">
+                        Es formen aproximadament <span class="value-highlight">28.6 kg de cristalls de naftalè pur</span>.<br>
+                        Queden aproximadament <span class="value-highlight">71.4 kg de dissolució mare líquida saturada</span>, amb una composició del <span class="value-highlight">44.0% de naftalè</span>.<br>
+                        El rendiment en cristalls de naftalè és de 28.6 kg.
+                    </div>
+                </div>
+            </div>
+
+            <div class="calculation-step">
+                <h3>Apartat e): Refredament Addicional a 0\(^\circ\)C</h3>
+                <p><strong>Pregunta:</strong> Ídem (partint de la dissolució al 60% de naftalè), però el refredament continua fins a 0\(^\circ\)C.</p>
+                <div class="explanation">
+                    <p>La composició global del sistema continua sent 60% naftalè (\(x_M = 0.60\)).</p>
+                    <p>A 0\(^\circ\)C, consultant el diagrama de fases:</p>
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Composició del líquid saturat (\(x_L\)): 20.0% naftalè (0.20 fracció màssica). (Aquesta és la composició de la corba de liquidus del naftalè a 0\(^\circ\)C, ja que \(x_M > x_E\)).</li>
+                        <li>Composició del sòlid format (\(x_S\)): Naftalè pur (1.0 fracció màssica).</li>
+                    </ul>
+                    <p><strong>Aplicació de la Regla de la Palanca:</strong></p>
+                    <p>\( 100 \times 0.60 = m_C \times 1.0 + (100 - m_C) \times 0.20 \)</p>
+                    <p>\( 60 = m_C + 20 - 0.20 m_C \)</p>
+                    <p>\( 40 = 0.80 m_C \)</p>
+                    <p>\( m_C = \frac{40}{0.80} = \) <span class="value-highlight">50.0</span> kg (cristalls de naftalè).</p>
+                    <p>\( m_L = M - m_C = 100 - 50.0 = \) <span class="value-highlight">50.0</span> kg (dissolució mare).</p>
+                     <div class="final-answer-box mt-4">
+                        Es formen <span class="value-highlight">50.0 kg de cristalls de naftalè pur</span>.<br>
+                        Queden <span class="value-highlight">50.0 kg de dissolució mare líquida saturada</span>, amb una composició del <span class="value-highlight">20.0% de naftalè</span>.<br>
+                        El rendiment en cristalls de naftalè és de 50.0 kg.
+                    </div>
+                </div>
+            </div>
+
+            <div class="calculation-step">
+                <h3>Apartat f): Refredament Addicional a -10\(^\circ\)C</h3>
+                <p><strong>Pregunta:</strong> Ídem (partint de la dissolució al 60% de naftalè), però el refredament continua fins a -10\(^\circ\)C.</p>
+                 <div class="explanation">
+                    <p>La temperatura de -10\(^\circ\)C és inferior a la temperatura eutèctica (\(T_E = -3.5^\circ\text{C}\)).</p>
+                    <p>Quan una mescla es refreda per sota de la temperatura eutèctica, tot el líquid restant (que hauria assolit la composició eutèctica a \(T_E\)) solidifica formant la mescla eutèctica sòlida (un agregat fi de cristalls de benzè i cristalls de naftalè).</p>
+                    <p>En aquest cas:</p>
+                    <ol class="list-decimal list-inside ml-4">
+                        <li>En refredar de 60\(^\circ\)C, el naftalè pur comença a cristal·litzar quan s'assoleix la seva corba de liquidus.</li>
+                        <li>A mesura que es refreda més, continua precipitant naftalè pur, i la dissolució líquida es va empobrint en naftalè, seguint la corba de liquidus del naftalè.</li>
+                        <li>Quan la temperatura arriba a \(T_E = -3.5^\circ\text{C}\), la dissolució líquida restant té la composició eutèctica (18.9% naftalè).</li>
+                        <li>En continuar refredant per sota de \(T_E\) (fins a -10\(^\circ\)C), aquesta dissolució líquida eutèctica solidifica completament com una mescla sòlida de cristalls de benzè i cristalls de naftalè, mantenint la composició global eutèctica per a aquesta porció.</li>
+                    </ol>
+                    <p>El resultat final a -10\(^\circ\)C serà una mescla de dos sòlids:</p>
+                    <ul class="list-disc list-inside ml-4">
+                        <li>Els cristalls de naftalè pur que es van formar entre la temperatura de liquidus inicial i la temperatura eutèctica.</li>
+                        <li>La mescla eutèctica sòlida (formada per cristalls de benzè i cristalls de naftalè).</li>
+                    </ul>
+                    <p>Com que no hi ha hagut pèrdua de massa (no evaporació), la composició global de la massa sòlida total a -10\(^\circ\)C ha de ser la mateixa que la de la dissolució inicial.</p>
+                    <div class="final-answer-box mt-4">
+                        A -10\(^\circ\)C, tota la massa inicial (100 kg) ha solidificat. La fase sòlida resultant és una mescla íntima de cristalls de benzè i cristalls de naftalè, i la seva <strong>composició global és la de la dissolució original: 60% de naftalè</strong> i 40% de benzè.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="resum-final" class="mb-12 p-6 rounded-lg shadow-xl section-bg-light">
+            <h2 class="text-blue-700 border-b-2 border-blue-400 pb-2 mb-6">Resum de les Respostes</h2>
+            <div class="explanation">
+                <p><strong>a) Punt Eutèctic:</strong> \(T_E = -3.5^\circ\text{C}\), Composició \(x_{E,\text{naftalè}} = 18.9\%\) en massa.</p>
+                <p><strong>b) 20% Naftalè, 60\(^\circ\)C \(\rightarrow\) 20\(^\circ\)C:</strong> La dissolució roman líquida i insaturada. No es formen cristalls.</p>
+                <p><strong>c) 10% Naftalè, 10\(^\circ\)C \(\rightarrow\) 0\(^\circ\)C (per 100 kg):</strong> 31.0 kg de cristalls de benzè i 69.0 kg de dissolució saturada al 14.5% de naftalè.</p>
+                <p><strong>d) 60% Naftalè, 60\(^\circ\)C \(\rightarrow\) 30\(^\circ\)C (per 100 kg):</strong> 28.6 kg de cristalls de naftalè i 71.4 kg de dissolució saturada al 44.0% de naftalè.</p>
+                <p><strong>e) 60% Naftalè, refredament fins a 0\(^\circ\)C (per 100 kg):</strong> 50.0 kg de cristalls de naftalè i 50.0 kg de dissolució saturada al 20.0% de naftalè.</p>
+                <p><strong>f) 60% Naftalè, refredament fins a -10\(^\circ\)C (per 100 kg):</strong> Es forma una massa sòlida total de 100 kg, composta per una mescla de cristalls de benzè i naftalè, amb una composició global del 60.0% de naftalè.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="mt-16 pt-8 border-t border-gray-300 text-sm text-gray-600">
+        <p class="footer-attribution">Anàlisi de Diagrames de Fases - Curs Avançat</p>
+    </footer>
+
+    <script>
+        // No cal JavaScript per funcionalitat, només per MathJax.
+        // MathJax s'executarà automàticament en carregar la pàgina.
+    </script>
+
+</body>
+</html>
